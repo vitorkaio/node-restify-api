@@ -1,0 +1,18 @@
+ // Primeira rota com restify.
+        this.application.get('/hello', (req, res, next) => {
+          // set status => res.status(400);
+          res.json({msg: 'Hello'});
+          return next(); // notifica o servidor que a rota terminou o serviço.
+        });
+
+        // Retorna os dados da requisição.
+        this.application.get('/info', (req, res, next) => {
+          res.json({
+            browser: req.userAgent(), // mostra qual browser fez a requisição
+            method: req.method, // retorna qual metódo http foi disparado
+            url: req.href(), // url disparada
+            path: req.path(), // path da rota
+            query: req.query, // lista os parâmentros query da rota
+          });
+          return next();
+        });
